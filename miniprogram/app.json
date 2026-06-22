@@ -1,0 +1,61 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/story/index",
+    "pages/sound/index",
+    "pages/treehole/index",
+    "pages/vote/index",
+    "pages/vote/detail",
+    "pages/mine/index",
+    "pages/story/detail",
+    "pages/mine/settings"
+  ],
+  "window": {
+    "backgroundColor": "#0a1628",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#0a1628",
+    "navigationBarTitleText": "要睡了嘞",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#8b9bb4",
+    "selectedColor": "#f5c66c",
+    "backgroundColor": "#0d1f35",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/tab/home.png",
+        "selectedIconPath": "images/tab/home-active.png"
+      },
+      {
+        "pagePath": "pages/story/index",
+        "text": "故事",
+        "iconPath": "images/tab/story.png",
+        "selectedIconPath": "images/tab/story-active.png"
+      },
+      {
+        "pagePath": "pages/vote/index",
+        "text": "投票",
+        "iconPath": "images/tab/vote.png",
+        "selectedIconPath": "images/tab/vote-active.png"
+      },
+      {
+        "pagePath": "pages/treehole/index",
+        "text": "树洞",
+        "iconPath": "images/tab/treehole.png",
+        "selectedIconPath": "images/tab/treehole-active.png"
+      },
+      {
+        "pagePath": "pages/mine/index",
+        "text": "我的",
+        "iconPath": "images/tab/mine.png",
+        "selectedIconPath": "images/tab/mine-active.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json",
+  "style": "v2",
+  "lazyCodeLoading": "requiredComponents"
+}

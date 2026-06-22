@@ -1,0 +1,57 @@
+<view wx:if="{{vote}}" class="container">
+  <view class="vote-header">
+    <text class="vote-title">{{vote.title}}</text>
+    <view class="vote-status">
+      <text wx:if="{{vote.hasVoted}}" class="status voted">已投票</text>
+      <text wx:else class="status active">进行中</text>
+    </view>
+  </view>
+
+  <view class="vote-info">
+    <view class="info-item">
+      <text class="info-label">总票数</text>
+      <text class="info-value">{{vote.totalVotes}} 票</text>
+    </view>
+    <view class="info-item">
+      <text class="info-label">截止时间</text>
+      <text class="info-value">{{vote.deadlineText}}</text>
+    </view>
+  </view>
+
+  <view class="options-section">
+    <text class="section-title">投票选项</text>
+    
+    <view 
+      wx:for="{{vote.options}}" 
+      wx:key="index" 
+      class="option-item {{vote.hasVoted ? 'disabled' : ''}}"
+      bindtap="selectOption"
+      data-index="{{index}}"
+    >
+      <view class="option-left">
+        <view class="option-radio {{selectedOption === index ? 'selected' : ''}} {{vote.hasVoted ? 'disabled' : ''}}">
+          <view wx:if="{{selectedOption === index}}" class="radio-inner"></view>
+        </view>
+        <text class="option-text">{{item.text}}</text>
+      </view>
+      <view wx:if="{{showResult}}" class="option-right">
+        <view class="progress-bar">
+          <view class="progress-fill" style="width: {{item.percentage}}%"></view>
+        </view>
+        <text class="vote-count">{{item.votes}}票 ({{item.percentage}}%)</text>
+      </view>
+    </view>
+  </view>
+
+  <view wx:if="{{!vote.hasVoted}}" class="submit-area">
+    <button class="submit-btn" bindtap="submitVote">提交投票</button>
+  </view>
+
+  <view wx:if="{{vote.hasVoted}}" class="result-hint">
+    <text class="hint-text">✓ 您已成功投票，感谢参与！</text>
+  </view>
+
+  <view class="share-section">
+    <button class="share-btn" open-type="share">分享投票</button>
+  </view>
+</view>

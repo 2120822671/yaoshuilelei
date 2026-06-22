@@ -1,0 +1,119 @@
+.container {
+  padding: 40rpx;
+  padding-bottom: 200rpx;
+}
+
+.user-section {
+  display: flex;
+  align-items: center;
+  padding: 30rpx;
+  background: rgba(255,255,255,0.08);
+  border-radius: 24rpx;
+  margin-bottom: 30rpx;
+}
+
+.avatar-wrapper {
+  margin-right: 20rpx;
+}
+
+.avatar {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  border: 3rpx solid rgba(245, 198, 108, 0.5);
+}
+
+.avatar.placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.1);
+}
+
+.avatar-icon {
+  font-size: 40rpx;
+}
+
+.user-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+}
+
+.user-name {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.user-desc {
+  font-size: 24rpx;
+  color: #8b9bb4;
+}
+
+.login-arrow {
+  padding: 10rpx;
+}
+
+.arrow-icon {
+  font-size: 48rpx;
+  color: #8b9bb4;
+}
+
+.greeting {
+  margin-top: 20rpx;
+  margin-bottom: 30rpx;
+}
+
+.text-large {
+  font-size: 52rpx;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.date-row {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+  margin-bottom: 40rpx;
+}
+
+.text-medium {
+  font-size: 28rpx;
+  color: #f5c66c;
+}
+
+.text-small {
+  font-size: 24rpx;
+  color: #8b9bb4;
+  padding: 8rpx 16rpx;
+  background: rgba(255,255,255,0.1);
+  border-radius: 20rpx;
+}
+
+.card-row {
+  display: flex;
+  gap: 20rpx;
+  margin-bottom: 20rpx;
+}
+
+.card {
+  flex: 1;
+  padding: 30rpx;
+  background: rgba(255,255,255,0.08);
+  border-radius: 24rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.card-icon {
+  font-size: 48rpx;
+}
+
+.card-text {
+  font-size: 28rpx;
+  color: #ffffff;
+}

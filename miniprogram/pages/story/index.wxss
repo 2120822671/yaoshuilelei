@@ -1,0 +1,110 @@
+.page {
+  min-height: 100vh;
+  padding: 32rpx;
+  padding-bottom: 160rpx;
+}
+
+.header {
+  margin-top: 40rpx;
+  margin-bottom: 48rpx;
+}
+
+.page-title {
+  font-size: 56rpx;
+  font-weight: 700;
+  color: #fff;
+  display: block;
+  margin-bottom: 12rpx;
+}
+
+.page-desc {
+  font-size: 28rpx;
+  color: #8b9bb4;
+}
+
+.story-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+}
+
+.story-card {
+  padding: 32rpx;
+  display: flex;
+  align-items: center;
+  gap: 24rpx;
+}
+
+.story-cover {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 24rpx;
+  background: linear-gradient(135deg, rgba(245, 198, 108, 0.3), rgba(232, 168, 74, 0.2));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.cover-icon {
+  font-size: 56rpx;
+}
+
+.story-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+  min-width: 0;
+}
+
+.story-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #fff;
+}
+
+.story-intro {
+  font-size: 26rpx;
+  color: #8b9bb4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.story-meta {
+  display: flex;
+  gap: 16rpx;
+}
+
+.meta-item {
+  font-size: 22rpx;
+  color: #5a6a7a;
+}
+
+.story-action {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  background: rgba(245, 198, 108, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.action-icon {
+  font-size: 32rpx;
+  color: #f5c66c;
+  margin-left: 6rpx;
+}
+
+.footer {
+  text-align: center;
+  padding: 40rpx;
+}
+
+.footer-text {
+  font-size: 24rpx;
+  color: #5a6a7a;
+}

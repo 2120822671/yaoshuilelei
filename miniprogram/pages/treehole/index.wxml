@@ -1,0 +1,56 @@
+<view class="page">
+  <view class="header">
+    <text class="page-title">失眠树洞</text>
+    <text class="page-desc">在这里倾诉你的心事，释放压力</text>
+  </view>
+
+  <view class="intro-card glass-card">
+    <text class="intro-icon">🌳</text>
+    <text class="intro-text">深夜里，每个人都有难以入眠的时刻。在这里，你可以匿名倾诉，无需顾虑。所有的心事都会被温柔地接纳，让我们一起度过这个夜晚。</text>
+  </view>
+
+  <view class="input-section glass-card">
+    <textarea 
+      class="message-input" 
+      placeholder="说说你的心事..." 
+      placeholder-class="input-placeholder"
+      value="{{inputValue}}"
+      bindinput="onInput"
+      maxlength="500"
+    ></textarea>
+    <view class="input-footer">
+      <text class="char-count">{{inputValue.length}}/500</text>
+      <button class="publish-btn primary-btn" bindtap="publishMessage">发布</button>
+    </view>
+  </view>
+
+  <view class="messages-section">
+    <text class="section-title">树洞留言</text>
+    <view class="messages-list">
+      <view 
+        class="message-card glass-card" 
+        wx:for="{{messages}}" 
+        wx:key="id"
+      >
+        <view class="message-header">
+          <view class="avatar-wrap">
+            <text class="avatar-icon">🌙</text>
+          </view>
+          <text class="message-time">{{item.time}}</text>
+        </view>
+        <text class="message-content">{{item.content}}</text>
+        <view class="message-footer">
+          <view class="like-btn" bindtap="likeMessage" data-id="{{item.id}}">
+            <text class="like-icon">❤️</text>
+            <text class="like-count">{{item.likes}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="empty-state" wx:if="{{messages.length === 0}}">
+      <text class="empty-icon">🌙</text>
+      <text class="empty-text">还没有留言，来写下第一条吧</text>
+    </view>
+  </view>
+</view>

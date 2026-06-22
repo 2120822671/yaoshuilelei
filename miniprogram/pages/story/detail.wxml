@@ -1,0 +1,218 @@
+<view class="page">
+  <view class="story-header glass-card">
+    <view class="header-bg"></view>
+    <view class="header-content">
+      <text class="story-title">{{story.title}}</text>
+      <view class="story-meta">
+        <text class="meta-item">⏱ {{story.duration}}</text>
+        <text class="meta-item">📖 {{contentParagraphs.length}} 段</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="player-section glass-card">
+    <view class="player-display">
+      <view class="wave-animation" wx:if="{{isPlaying}}">
+        <view class="wave-bar" style="animation-delay: 0s"></view>
+        <view class="wave-bar" style="animation-delay: 0.1s"></view>
+        <view class="wave-bar" style="animation-delay: 0.2s"></view>
+        <view class="wave-bar" style="animation-delay: 0.3s"></view>
+        <view class="wave-bar" style="animation-delay: 0.4s"></view>
+      </view>
+      <view class="player-icon" wx:else>
+        <text class="icon-text">🌙</text>
+      </view>
+    </view>
+    
+    <view class="progress-control">
+      <text class="time-text">{{formatTime(currentTime)}}</text>
+      <view class="progress-bar-wrap">
+        <view class="progress-bar">
+          <view class="progress-fill" style="width: {{progress}}%"></view>
+          <view class="progress-thumb" style="left: {{progress}}%"></view>
+        </view>
+      </view>
+      <text class="time-text">{{story.duration}}</text>
+    </view>
+
+    <view class="player-controls">
+      <view class="control-btn secondary" bindtap="showSpeedModal">
+        <text class="control-text">{{playSpeed}}x</text>
+      </view>
+      <view class="control-btn primary" bindtap="togglePlay">
+        <text class="control-icon">{{isPlaying ? '⏸' : '▶'}}</text>
+      </view>
+      <view class="control-btn secondary" bindtap="showSoundEffects">
+        <text class="control-icon">🎵</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="story-content">
+    <view 
+      class="content-paragraph" 
+      wx:for="{{contentParagraphs}}" 
+      wx:key="index"
+      id="paragraph-{{index}}"
+    >
+      <text class="paragraph-text">{{item}}</text>
+    </view>
+  </view>
+
+  <view class="bottom-bar glass-card">
+    <view class="timer-section" bindtap="showTimerModal">
+      <text class="timer-icon">⏰</text>
+      <text class="timer-text">{{timerText}}</text>
+    </view>
+    
+    <view class="action-section">
+      <view class="action-btn" bindtap="toggleCollect">
+        <text class="action-icon">{{isCollected ? '❤️' : '🤍'}}</text>
+        <text class="action-text">收藏</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="timer-modal" wx:if="{{showTimer}}" bindtap="hideTimerModal">
+    <view class="timer-content glass-card" catchtap="preventClose">
+      <text class="modal-title">定时关闭</text>
+      <view class="timer-options">
+        <view 
+          class="timer-option {{selectedTimer === 0 ? 'selected' : ''}}" 
+          bindtap="selectTimer" 
+          data-time="0"
+        >
+          <text class="option-text">不开启</text>
+        </view>
+        <view 
+          class="timer-option {{selectedTimer === 10 ? 'selected' : ''}}" 
+          bindtap="selectTimer" 
+          data-time="10"
+        >
+          <text class="option-text">10分钟</text>
+        </view>
+        <view 
+          class="timer-option {{selectedTimer === 20 ? 'selected' : ''}}" 
+          bindtap="selectTimer" 
+          data-time="20"
+        >
+          <text class="option-text">20分钟</text>
+        </view>
+        <view 
+          class="timer-option {{selectedTimer === 30 ? 'selected' : ''}}" 
+          bindtap="selectTimer" 
+          data-time="30"
+        >
+          <text class="option-text">30分钟</text>
+        </view>
+        <view 
+          class="timer-option {{selectedTimer === 60 ? 'selected' : ''}}" 
+          bindtap="selectTimer" 
+          data-time="60"
+        >
+          <text class="option-text">60分钟</text>
+        </view>
+      </view>
+      <view class="modal-close" bindtap="hideTimerModal">
+        <text class="close-text">关闭</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="speed-modal" wx:if="{{showSpeed}}" bindtap="hideSpeedModal">
+    <view class="speed-content glass-card" catchtap="preventClose">
+      <text class="modal-title">播放速度</text>
+      <view class="speed-options">
+        <view 
+          class="speed-option {{playSpeed === 0.5 ? 'selected' : ''}}" 
+          bindtap="selectSpeed" 
+          data-speed="0.5"
+        >
+          <text class="option-text">0.5x</text>
+        </view>
+        <view 
+          class="speed-option {{playSpeed === 0.75 ? 'selected' : ''}}" 
+          bindtap="selectSpeed" 
+          data-speed="0.75"
+        >
+          <text class="option-text">0.75x</text>
+        </view>
+        <view 
+          class="speed-option {{playSpeed === 1 ? 'selected' : ''}}" 
+          bindtap="selectSpeed" 
+          data-speed="1"
+        >
+          <text class="option-text">1.0x</text>
+        </view>
+        <view 
+          class="speed-option {{playSpeed === 1.25 ? 'selected' : ''}}" 
+          bindtap="selectSpeed" 
+          data-speed="1.25"
+        >
+          <text class="option-text">1.25x</text>
+        </view>
+        <view 
+          class="speed-option {{playSpeed === 1.5 ? 'selected' : ''}}" 
+          bindtap="selectSpeed" 
+          data-speed="1.5"
+        >
+          <text class="option-text">1.5x</text>
+        </view>
+      </view>
+      <view class="modal-close" bindtap="hideSpeedModal">
+        <text class="close-text">关闭</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="effects-modal" wx:if="{{showEffects}}" bindtap="hideEffectsModal">
+    <view class="effects-content glass-card" catchtap="preventClose">
+      <text class="modal-title">背景音效</text>
+      <view class="effects-options">
+        <view 
+          class="effect-option {{selectedEffect === 'none' ? 'selected' : ''}}" 
+          bindtap="selectEffect" 
+          data-effect="none"
+        >
+          <text class="effect-icon">🔇</text>
+          <text class="effect-text">无</text>
+        </view>
+        <view 
+          class="effect-option {{selectedEffect === 'rain' ? 'selected' : ''}}" 
+          bindtap="selectEffect" 
+          data-effect="rain"
+        >
+          <text class="effect-icon">🌧️</text>
+          <text class="effect-text">雨声</text>
+        </view>
+        <view 
+          class="effect-option {{selectedEffect === 'wave' ? 'selected' : ''}}" 
+          bindtap="selectEffect" 
+          data-effect="wave"
+        >
+          <text class="effect-icon">🌊</text>
+          <text class="effect-text">海浪</text>
+        </view>
+        <view 
+          class="effect-option {{selectedEffect === 'fire' ? 'selected' : ''}}" 
+          bindtap="selectEffect" 
+          data-effect="fire"
+        >
+          <text class="effect-icon">🔥</text>
+          <text class="effect-text">柴火</text>
+        </view>
+        <view 
+          class="effect-option {{selectedEffect === 'music' ? 'selected' : ''}}" 
+          bindtap="selectEffect" 
+          data-effect="music"
+        >
+          <text class="effect-icon">🎵</text>
+          <text class="effect-text">轻音乐</text>
+        </view>
+      </view>
+      <view class="modal-close" bindtap="hideEffectsModal">
+        <text class="close-text">关闭</text>
+      </view>
+    </view>
+  </view>
+</view>

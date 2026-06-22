@@ -1,0 +1,121 @@
+<view class="page">
+  <view class="header">
+    <text class="page-title">助眠声音</text>
+    <text class="page-desc">聆听自然的声音，放松身心</text>
+  </view>
+
+  <view class="category-tabs">
+    <view 
+      class="tab-item {{currentCategory === item.id ? 'active' : ''}}" 
+      wx:for="{{categories}}" 
+      wx:key="id"
+      bindtap="switchCategory"
+      data-id="{{item.id}}"
+    >
+      <text class="tab-icon">{{getCategoryIcon(item.id)}}</text>
+      <text class="tab-text">{{item.name}}</text>
+    </view>
+  </view>
+
+  <view class="sound-list">
+    <view 
+      class="sound-card glass-card" 
+      wx:for="{{filteredSounds}}" 
+      wx:key="id"
+      bindtap="toggleSound"
+      data-id="{{item.id}}"
+    >
+      <view class="sound-icon-wrap {{playingId === item.id ? 'playing' : ''}}">
+        <text class="sound-icon">{{getCategoryIcon(item.category)}}</text>
+        <view class="sound-wave" wx:if="{{playingId === item.id}}">
+          <view class="wave-dot"></view>
+          <view class="wave-dot"></view>
+          <view class="wave-dot"></view>
+        </view>
+      </view>
+      <view class="sound-info">
+        <text class="sound-name">{{item.name}}</text>
+        <text class="sound-duration">{{item.duration}}</text>
+      </view>
+      <view class="sound-actions">
+        <view class="action-item" bindtap="toggleFavorite" data-id="{{item.id}}" catchtap="preventBubble">
+          <text class="favorite-icon">{{isFavorited(item.id) ? '❤️' : '🤍'}}</text>
+        </view>
+        <view class="sound-play-btn {{playingId === item.id ? 'playing' : ''}}">
+          <text class="play-icon">{{playingId === item.id ? '⏸' : '▶'}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="player-bar glass-card" wx:if="{{playingId}}">
+    <view class="player-info">
+      <text class="player-name">{{currentSound.name}}</text>
+      <view class="progress-bar">
+        <view class="progress-fill" style="width: {{progress}}%"></view>
+        <view class="progress-thumb" style="left: {{progress}}%"></view>
+      </view>
+      <view class="time-info">
+        <text class="current-time">{{formatTime(currentTime)}}</text>
+        <text class="total-time">{{currentSound.duration}}</text>
+      </view>
+    </view>
+    <view class="player-controls">
+      <view class="control-btn secondary" bindtap="showSpeedModal">
+        <text class="control-text">{{playSpeed}}x</text>
+      </view>
+      <view class="control-btn primary" bindtap="toggleSound" data-id="{{playingId}}">
+        <text class="control-icon">{{isPlaying ? '⏸' : '▶'}}</text>
+      </view>
+      <view class="control-btn secondary" bindtap="stopSound">
+        <text class="control-icon">⏹</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="speed-modal" wx:if="{{showSpeed}}" bindtap="hideSpeedModal">
+    <view class="speed-content glass-card" catchtap="preventClose">
+      <text class="modal-title">播放速度</text>
+      <view class="speed-options">
+        <view 
+          class="speed-option {{playSpeed === 0.5 ? 'selected' : ''}}" 
+          bindtap="selectSpeed" 
+          data-speed="0.5"
+        >
+          <text class="option-text">0.5x</text>
+        </view>
+        <view 
+          class="speed-option {{playSpeed === 0.75 ? 'selected' : ''}}" 
+          bindtap="selectSpeed" 
+          data-speed="0.75"
+        >
+          <text class="option-text">0.75x</text>
+        </view>
+        <view 
+          class="speed-option {{playSpeed === 1 ? 'selected' : ''}}" 
+          bindtap="selectSpeed" 
+          data-speed="1"
+        >
+          <text class="option-text">1.0x</text>
+        </view>
+        <view 
+          class="speed-option {{playSpeed === 1.25 ? 'selected' : ''}}" 
+          bindtap="selectSpeed" 
+          data-speed="1.25"
+        >
+          <text class="option-text">1.25x</text>
+        </view>
+        <view 
+          class="speed-option {{playSpeed === 1.5 ? 'selected' : ''}}" 
+          bindtap="selectSpeed" 
+          data-speed="1.5"
+        >
+          <text class="option-text">1.5x</text>
+        </view>
+      </view>
+      <view class="modal-close" bindtap="hideSpeedModal">
+        <text class="close-text">关闭</text>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,75 @@
+<view class="container">
+  <view class="header">
+    <text class="title">互动投票</text>
+    <button class="create-btn" bindtap="showCreateModal">发起投票</button>
+  </view>
+
+  <scroll-view class="vote-list" scroll-y>
+    <view wx:if="{{votes.length === 0}}" class="empty-state">
+      <text class="empty-text">暂无投票</text>
+      <text class="empty-hint">点击右上角发起投票</text>
+    </view>
+    
+    <view wx:for="{{votes}}" wx:key="_id" class="vote-card" bindtap="goToDetail" data-id="{{item._id}}">
+      <view class="vote-header">
+        <text class="vote-title">{{item.title}}</text>
+        <view class="vote-status">
+          <text wx:if="{{item.hasVoted}}" class="status voted">已投票</text>
+          <text wx:else class="status active">进行中</text>
+        </view>
+      </view>
+      <view class="vote-info">
+        <view class="option-preview">
+          <text class="option-text">{{item.options[0].text}}</text>
+          <text class="divider">|</text>
+          <text class="option-text">{{item.options[1].text}}</text>
+          <text wx:if="{{item.options.length > 2}}" class="more">+{{item.options.length - 2}}个选项</text>
+        </view>
+        <view class="vote-meta">
+          <text class="meta-item">共{{item.totalVotes}}票</text>
+          <text class="meta-item">{{item.deadlineText}}</text>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <view wx:if="{{showCreateModal}}" class="modal-mask" bindtap="closeCreateModal">
+    <view class="modal-content" catchtap="preventBubble">
+      <view class="modal-header">
+        <text class="modal-title">发起投票</text>
+        <text class="modal-close" bindtap="closeCreateModal">×</text>
+      </view>
+      
+      <view class="form-item">
+        <text class="form-label">投票标题</text>
+        <input class="form-input" placeholder="请输入投票标题" value="{{voteTitle}}" bindinput="onTitleInput" />
+      </view>
+
+      <view class="form-item">
+        <text class="form-label">投票选项</text>
+        <view wx:for="{{options}}" wx:key="index" class="option-row">
+          <input 
+            class="option-input" 
+            placeholder="选项{{index + 1}}" 
+            value="{{item}}" 
+            bindinput="onOptionInput" 
+            data-index="{{index}}" 
+          />
+          <text wx:if="{{options.length > 2}}" class="remove-option" bindtap="removeOption" data-index="{{index}}">×</text>
+        </view>
+        <button wx:if="{{options.length < 6}}" class="add-option-btn" bindtap="addOption">+ 添加选项</button>
+      </view>
+
+      <view class="form-item">
+        <text class="form-label">截止时间（可选）</text>
+        <picker mode="date" value="{{deadline}}" bindchange="onDeadlineChange">
+          <view class="date-picker">
+            <text>{{deadline || '选择日期'}}</text>
+          </view>
+        </picker>
+      </view>
+
+      <button class="submit-btn" bindtap="createVote">确认发起</button>
+    </view>
+  </view>
+</view>

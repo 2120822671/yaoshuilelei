@@ -1,0 +1,62 @@
+.page {
+  min-height: 100vh;
+  padding: 32rpx;
+}
+
+.header {
+  margin-top: 40rpx;
+  margin-bottom: 48rpx;
+}
+
+.page-title {
+  font-size: 56rpx;
+  font-weight: 700;
+  color: #fff;
+}
+
+.settings-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.setting-item {
+  padding: 28rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.setting-info {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+}
+
+.setting-icon {
+  font-size: 36rpx;
+}
+
+.setting-text {
+  font-size: 30rpx;
+  color: #fff;
+}
+
+.setting-switch {
+  transform: scale(0.8);
+}
+
+.setting-arrow {
+  font-size: 32rpx;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.version-info {
+  text-align: center;
+  padding: 60rpx;
+}
+
+.version-text {
+  font-size: 24rpx;
+  color: #5a6a7a;
+}

@@ -1,0 +1,44 @@
+<view class="container">
+  <view class="user-section" bindtap="handleUserTap">
+    <view class="avatar-wrapper">
+      <image wx:if="{{userInfo}}" class="avatar" src="{{userInfo.avatarUrl}}" mode="aspectFill" />
+      <view wx:else class="avatar placeholder">
+        <text class="avatar-icon">👤</text>
+      </view>
+    </view>
+    <view class="user-info">
+      <text class="user-name">{{userInfo ? userInfo.nickName : '点击登录'}}</text>
+      <text class="user-desc">{{userInfo ? '已陪伴 ' + accompanyDays + ' 天' : '登录后记录您的睡眠时光'}}</text>
+    </view>
+    <view class="login-arrow">
+      <text class="arrow-icon">›</text>
+    </view>
+  </view>
+  <view class="greeting">
+    <text class="text-large">{{greeting}}</text>
+  </view>
+  <view class="date-row">
+    <text class="text-medium">{{currentDate}}</text>
+    <text class="text-small">{{currentWeek}}</text>
+  </view>
+  <view class="card-row">
+    <view class="card" bindtap="goToStory">
+      <text class="card-icon">📖</text>
+      <text class="card-text">晚安故事</text>
+    </view>
+    <view class="card" bindtap="goToSound">
+      <text class="card-icon">🎵</text>
+      <text class="card-text">助眠声音</text>
+    </view>
+  </view>
+  <view class="card-row">
+    <view class="card" bindtap="goToTreehole">
+      <text class="card-icon">🌳</text>
+      <text class="card-text">失眠树洞</text>
+    </view>
+    <view class="card" bindtap="goToVote">
+      <text class="card-icon">🗳️</text>
+      <text class="card-text">互动投票</text>
+    </view>
+  </view>
+</view>

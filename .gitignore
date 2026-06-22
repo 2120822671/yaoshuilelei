@@ -1,0 +1,11 @@
+node_modules/
+dist/
+miniprogram/node_modules/
+miniprogram/dist/
+.project/
+.settings/
+*.log
+.DS_Store
+.project.private.config.json
+*.swp
+*.swo

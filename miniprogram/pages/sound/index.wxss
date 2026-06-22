@@ -1,0 +1,364 @@
+.page {
+  min-height: 100vh;
+  padding: 32rpx;
+  padding-bottom: 320rpx;
+}
+
+.header {
+  margin-top: 40rpx;
+  margin-bottom: 40rpx;
+}
+
+.page-title {
+  font-size: 56rpx;
+  font-weight: 700;
+  color: #fff;
+  display: block;
+  margin-bottom: 12rpx;
+}
+
+.page-desc {
+  font-size: 28rpx;
+  color: #8b9bb4;
+}
+
+.category-tabs {
+  display: flex;
+  gap: 16rpx;
+  margin-bottom: 40rpx;
+}
+
+.tab-item {
+  flex: 1;
+  padding: 24rpx 16rpx;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20rpx;
+  border: 2rpx solid transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12rpx;
+  transition: all 0.3s ease;
+}
+
+.tab-item.active {
+  background: rgba(245, 198, 108, 0.2);
+  border-color: #f5c66c;
+}
+
+.tab-icon {
+  font-size: 40rpx;
+}
+
+.tab-text {
+  font-size: 26rpx;
+  color: #8b9bb4;
+}
+
+.tab-item.active .tab-text {
+  color: #f5c66c;
+}
+
+.sound-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.sound-card {
+  padding: 32rpx;
+  display: flex;
+  align-items: center;
+  gap: 24rpx;
+}
+
+.sound-icon-wrap {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 28rpx;
+  background: rgba(245, 198, 108, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.sound-icon-wrap.playing {
+  background: linear-gradient(135deg, rgba(245, 198, 108, 0.3), rgba(232, 168, 74, 0.2));
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.sound-icon {
+  font-size: 48rpx;
+}
+
+.sound-wave {
+  position: absolute;
+  bottom: 8rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 4rpx;
+}
+
+.wave-dot {
+  width: 6rpx;
+  height: 6rpx;
+  background: #f5c66c;
+  border-radius: 50%;
+  animation: wave 0.6s ease-in-out infinite;
+}
+
+.wave-dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.wave-dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes wave {
+  0%, 100% { opacity: 0.4; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+.sound-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+}
+
+.sound-name {
+  font-size: 32rpx;
+  color: #fff;
+  font-weight: 500;
+}
+
+.sound-duration {
+  font-size: 26rpx;
+  color: #5a6a7a;
+}
+
+.sound-actions {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.action-item {
+  padding: 12rpx;
+}
+
+.favorite-icon {
+  font-size: 40rpx;
+}
+
+.sound-play-btn {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.sound-play-btn.playing {
+  background: linear-gradient(135deg, #f5c66c, #e8a84a);
+  box-shadow: 0 8rpx 24rpx rgba(245, 198, 108, 0.4);
+}
+
+.play-icon {
+  font-size: 32rpx;
+  color: #fff;
+  margin-left: 4rpx;
+}
+
+.sound-play-btn.playing .play-icon {
+  color: #0a1628;
+}
+
+.player-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 32rpx;
+  padding-bottom: calc(32rpx + env(safe-area-inset-bottom));
+  display: flex;
+  align-items: center;
+  gap: 32rpx;
+}
+
+.player-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.player-name {
+  font-size: 32rpx;
+  color: #fff;
+  font-weight: 600;
+}
+
+.progress-bar {
+  height: 12rpx;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 6rpx;
+  position: relative;
+  overflow: visible;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #f5c66c, #e8a84a);
+  border-radius: 6rpx;
+  transition: width 0.3s ease;
+}
+
+.progress-thumb {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 28rpx;
+  height: 28rpx;
+  background: #f5c66c;
+  border-radius: 50%;
+  box-shadow: 0 4rpx 12rpx rgba(245, 198, 108, 0.5);
+  transition: left 0.3s ease;
+}
+
+.time-info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.current-time,
+.total-time {
+  font-size: 24rpx;
+  color: #8b9bb4;
+}
+
+.player-controls {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+}
+
+.control-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.control-btn.primary {
+  width: 100rpx;
+  height: 100rpx;
+  background: linear-gradient(135deg, #f5c66c, #e8a84a);
+  box-shadow: 0 8rpx 24rpx rgba(245, 198, 108, 0.4);
+}
+
+.control-btn.secondary {
+  width: 72rpx;
+  height: 72rpx;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.control-icon {
+  font-size: 40rpx;
+  color: #0a1628;
+}
+
+.control-btn.secondary .control-icon {
+  font-size: 32rpx;
+  color: #f5c66c;
+}
+
+.control-text {
+  font-size: 26rpx;
+  color: #f5c66c;
+  font-weight: 600;
+}
+
+.speed-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: flex-end;
+  z-index: 1000;
+}
+
+.speed-content {
+  width: 100%;
+  padding: 48rpx;
+  padding-bottom: calc(48rpx + env(safe-area-inset-bottom));
+  border-radius: 48rpx 48rpx 0 0;
+}
+
+.modal-title {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 40rpx;
+}
+
+.speed-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20rpx;
+}
+
+.speed-option {
+  flex: 1;
+  min-width: calc(33.33% - 14rpx);
+  padding: 28rpx;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20rpx;
+  text-align: center;
+  border: 2rpx solid transparent;
+  transition: all 0.3s ease;
+}
+
+.speed-option.selected {
+  background: rgba(245, 198, 108, 0.2);
+  border-color: #f5c66c;
+}
+
+.option-text {
+  font-size: 30rpx;
+  color: #fff;
+}
+
+.speed-option.selected .option-text {
+  color: #f5c66c;
+}
+
+.modal-close {
+  padding: 28rpx;
+  background: rgba(245, 198, 108, 0.2);
+  border-radius: 20rpx;
+  text-align: center;
+  margin-top: 24rpx;
+}
+
+.close-text {
+  font-size: 32rpx;
+  color: #f5c66c;
+  font-weight: 600;
+}
